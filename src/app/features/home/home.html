@@ -1,0 +1,62 @@
+<!-- Hero Carousel -->
+
+<section class="hero-section" (pointerenter)="onHeroPointerEnter($event)" (pointerleave)="onHeroPointerLeave($event)"
+    (pointerdown)="onPointerDown($event)" (pointerup)="onPointerUp($event)" (pointercancel)="onPointerCancel()">
+    <div class="hero-slides" aria-hidden="true">
+        @for (slide of heroSlides; track slide.image; let i = $index) {
+        <div class="hero-slide" [class.active]="currentSlide() === i"
+            [style.background-image]="'url(' + slide.image + ')'">
+        </div>
+        }
+    </div>
+    <div class="hero-content container">
+        <p class="hero-label">WELCOME TO SEVENS AQUATICS</p>
+
+        <h1>
+            Bring the Beauty of
+            <span>Aquatic Life</span>
+            Into Your World
+        </h1>
+
+        <p class="hero-description">
+            Discover beautiful aquarium fish, aquatic plants,
+            moss and everything you need to create your own
+            underwater paradise.
+        </p>
+
+        <div class="hero-actions">
+            <a href="/products" class="btn-primary">Explore Collection</a>
+            <a href="/contact" class="btn-secondary">Contact Us</a>
+        </div>
+    </div>
+
+
+
+    <!-- Hero Carousel Navigation -->
+    <div class="hero-carousel-controls">
+
+        <!-- Previous Button -->
+        <button type="button" aria-label="Previous slide" (click)="previousSlide()">
+            ‹
+        </button>
+
+        <!-- Navigation Dots -->
+        <div class="carousel-dots">
+            @for (slide of heroSlides; track slide.image; let i = $index) {
+            <button type="button" class="carousel-dot" [class.active]="currentSlide() === i"
+                [attr.aria-label]="'Go to slide ' + (i + 1)" [attr.aria-current]="currentSlide() === i ? 'true' : null"
+                (click)="goToSlide(i)">
+            </button>
+            }
+        </div>
+
+        <!-- Next Button -->
+        <button type="button" aria-label="Next slide" (click)="nextSlide()">
+            ›
+        </button>
+
+    </div>
+
+
+
+</section>
