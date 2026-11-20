@@ -1,0 +1,244 @@
+
+<header class="site-header">
+
+  <!-- Main Header Row -->
+  <div class="container header-container">
+
+    <!-- Brand Logo -->
+    <a routerLink="/" class="brand" (click)="closeMenu()">
+      <span class="brand-name">SEVENS</span>
+      <span class="brand-subtitle">AQUATICS & PETS</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" aria-label="Main navigation">
+      @for (item of navigationItems; track item.route) {
+        <div class="nav-item">
+
+          <!-- Main Category Link -->
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.route === '/' }">
+            {{ item.label }}
+          </a>
+
+          <!-- Desktop Subcategory Dropdown -->
+          @if (item.children.length > 0) {
+            <div class="dropdown-menu">
+              @for (child of item.children; track child.route) {
+                <a
+                  [routerLink]="child.route"
+                  routerLinkActive="active">
+                  {{ child.label }}
+                </a>
+              }
+            </div>
+          }
+
+        </div>
+      }
+    </nav>
+
+    <!-- Header Actions: Search, Cart and Mobile Menu -->
+    <div class="header-actions">
+
+      <!-- Desktop Product Search -->
+      <div class="header-search">
+        <form
+          class="search-form"
+          role="search"
+          (submit)="$event.preventDefault()">
+
+          <label for="product-search" class="visually-hidden">
+            Search products
+          </label>
+
+          <input
+            id="product-search"
+            type="search"
+            name="search"
+            placeholder="Search products..."
+            autocomplete="off"
+          />
+
+          <button type="submit" aria-label="Search products">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Mobile Search Toggle Button -->
+      <button
+        type="button"
+        class="mobile-search-toggle"
+        (click)="toggleSearch()"
+        [attr.aria-expanded]="isSearchOpen()"
+        aria-controls="mobile-product-search"
+        [attr.aria-label]="isSearchOpen() ? 'Close search' : 'Open search'">
+
+        @if (isSearchOpen()) {
+          <span aria-hidden="true">✕</span>
+        } @else {
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        }
+      </button>
+
+      <!-- Shopping Cart -->
+      <a
+        routerLink="/cart"
+        class="cart-link"
+        aria-label="Shopping cart">
+        🛒
+      </a>
+
+      <!-- Mobile Navigation Toggle -->
+      <button
+        type="button"
+        class="menu-toggle"
+        [attr.aria-expanded]="isMenuOpen()"
+        [attr.aria-label]="isMenuOpen() ? 'Close navigation menu' : 'Open navigation menu'"
+        aria-controls="mobile-navigation"
+        (click)="toggleMenu()">
+        {{ isMenuOpen() ? '✕' : '☰' }}
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Collapsible Mobile Product Search -->
+  <div
+    id="mobile-product-search"
+    class="mobile-search-panel"
+    [hidden]="!isSearchOpen()">
+
+    <div class="container">
+      <form
+        class="search-form"
+        role="search"
+        (submit)="$event.preventDefault()">
+
+        <label for="mobile-search-input" class="visually-hidden">
+          Search products
+        </label>
+
+        <input
+          id="mobile-search-input"
+          type="search"
+          name="mobileSearch"
+          placeholder="Search fish, plants, mosses..."
+          autocomplete="off"
+        />
+
+        <button type="submit" aria-label="Search products">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  @if (isMenuOpen()) {
+    <nav
+      id="mobile-navigation"
+      class="mobile-nav"
+      aria-label="Mobile navigation">
+
+      @for (item of navigationItems; track item.route) {
+
+        <!-- Categories With Subcategories -->
+        @if (item.children.length > 0) {
+          <div class="mobile-nav-group">
+
+            <div class="mobile-nav-row">
+
+              <!-- Main Category Link -->
+              <a
+                [routerLink]="item.route"
+                routerLinkActive="active"
+                (click)="closeMenu()">
+                {{ item.label }}
+              </a>
+
+              <!-- Expand / Collapse Subcategories -->
+              <button
+                type="button"
+                class="submenu-toggle"
+                [attr.aria-expanded]="expandedCategory() === item.route"
+                [attr.aria-label]="'Toggle ' + item.label + ' subcategories'"
+                (click)="toggleCategory(item.route)">
+                {{ expandedCategory() === item.route ? '−' : '+' }}
+              </button>
+
+            </div>
+
+            <!-- Mobile Subcategory Links -->
+            @if (expandedCategory() === item.route) {
+              <div class="mobile-submenu">
+                @for (child of item.children; track child.route) {
+                  <a
+                    [routerLink]="child.route"
+                    routerLinkActive="active"
+                    (click)="closeMenu()">
+                    {{ child.label }}
+                  </a>
+                }
+              </div>
+            }
+
+          </div>
+        } @else {
+
+          <!-- Categories Without Subcategories -->
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+            (click)="closeMenu()">
+            {{ item.label }}
+          </a>
+
+        }
+
+      }
+    </nav>
+  }
+
+</header>

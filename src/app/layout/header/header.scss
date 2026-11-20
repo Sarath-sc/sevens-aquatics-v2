@@ -1,0 +1,494 @@
+:host {
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+
+.site-header {
+  width: 100%;
+  background: #101b18;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-container {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  line-height: 1.2;
+  text-decoration: none;
+
+  .brand-name {
+    color: #d6b875;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 3px;
+  }
+
+  .brand-subtitle {
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+
+  a {
+    position: relative;
+    color: #e5ebe7;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &.active {
+      color: #50b58a;
+    }
+
+    &.active {
+      font-weight: 600;
+    }
+  }
+
+  .nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+
+    > a {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+
+      &.active::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        border-radius: 2px;
+        background: #50b58a;
+      }
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 220px;
+      padding: 8px;
+      background: #172720;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      z-index: 200;
+
+      a {
+        display: block;
+        padding: 12px 14px;
+        border-radius: 8px;
+        font-size: 14px;
+        white-space: nowrap;
+
+        &:hover,
+        &:focus-visible,
+        &.active {
+          background: rgba(80, 181, 138, 0.12);
+          color: #50b58a;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    &:hover .dropdown-menu,
+    &:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* Search sits beside the cart, not on a separate row. */
+.header-search {
+  width: clamp(145px, 16vw, 230px);
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+
+  .container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 38px;
+  margin: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  &:focus-within {
+    border-color: #50b58a;
+    box-shadow: 0 0 0 2px rgba(80, 181, 138, 0.2);
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #101b18;
+    font: inherit;
+    font-size: 12px;
+
+    &::placeholder {
+      color: #687b73;
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    background: #50b58a;
+    color: #101b18;
+    cursor: pointer;
+
+    &:hover {
+      background: #6bc99e;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #101b18;
+      outline-offset: -4px;
+    }
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cart-link {
+  flex-shrink: 0;
+  color: #ffffff;
+  font-size: 24px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.menu-toggle {
+  display: none;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Switch to compact mobile navigation before desktop links become crowded. */
+@media (max-width: 1100px) {
+  .header-container {
+    min-height: 70px;
+    gap: 10px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .header-actions {
+    flex: 1;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .header-search {
+    flex: 1;
+    width: auto;
+    max-width: 260px;
+  }
+
+  .search-form {
+    height: 36px;
+
+    input {
+      padding: 0 8px;
+      font-size: 12px;
+    }
+
+    button {
+      width: 34px;
+      height: 36px;
+    }
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 20px 20px;
+    background: #101b18;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    animation: slideDown 0.25s ease-out;
+
+    a {
+      display: block;
+      padding: 14px 16px;
+      color: #e5ebe7;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.2s ease, color 0.2s ease;
+
+      &:hover,
+      &:focus-visible,
+      &.active {
+        background: rgba(80, 181, 138, 0.12);
+        color: #50b58a;
+      }
+
+      &.active {
+        font-weight: 600;
+        border-left: 3px solid #50b58a;
+      }
+    }
+  }
+
+  .mobile-nav-group {
+    width: 100%;
+  }
+
+  .mobile-nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    > a {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  .submenu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    background: transparent;
+    color: #e5ebe7;
+    font-size: 22px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(80, 181, 138, 0.12);
+      color: #50b58a;
+    }
+  }
+
+  .mobile-submenu {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 4px 0 12px 16px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(80, 181, 138, 0.3);
+
+    a {
+      padding: 11px 14px;
+      font-size: 14px;
+      color: #b8c9c0;
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .brand {
+    .brand-name {
+      font-size: 17px;
+      letter-spacing: 1px;
+    }
+
+    .brand-subtitle {
+      font-size: 7px;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .header-actions {
+    gap: 7px;
+  }
+
+  .search-form input {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav {
+    animation: none;
+  }
+
+  .desktop-nav .dropdown-menu {
+    transition: none;
+  }
+}
+
+
+
+
+/* Mobile Search Icon - Hidden on Desktop */
+.mobile-search-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Mobile Search Panel - Hidden on Desktop */
+.mobile-search-panel {
+  display: none;
+}
+
+/* Mobile Header Layout */
+@media (max-width: 768px) {
+
+  /* Hide the desktop search field */
+  .header-actions .header-search {
+    display: none;
+  }
+
+  /* Display the search icon */
+  .mobile-search-toggle {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  /* Align the search, cart and menu icons */
+  .header-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Expandable search panel */
+  .mobile-search-panel:not([hidden]) {
+    display: block;
+    padding: 0 0 14px;
+    background: #101b18;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-search-panel .search-form {
+    width: 100%;
+    max-width: none;
+    height: 44px;
+  }
+
+  .mobile-search-panel .search-form input {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .mobile-search-panel .search-form button {
+    width: 44px;
+    height: 44px;
+  }
+}
+
