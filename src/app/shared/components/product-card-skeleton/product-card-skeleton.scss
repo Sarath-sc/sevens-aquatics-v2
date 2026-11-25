@@ -1,0 +1,64 @@
+
+/* SEVENS Aquatics - Product Card Skeleton */
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.product-card-skeleton {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #172720;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+}
+
+/* Product Image Placeholder */
+.skeleton-image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+
+  app-skeleton-loader {
+    height: 100%;
+  }
+}
+
+/* Product Information Placeholder */
+.skeleton-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+
+  > app-skeleton-loader:last-child {
+    margin-top: auto;
+  }
+}
+
+/* Price and Stock Placeholder */
+.skeleton-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  app-skeleton-loader:first-child {
+    width: 35%;
+  }
+
+  app-skeleton-loader:last-child {
+    width: 30%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .skeleton-info {
+    padding: 12px;
+    gap: 10px;
+  }
+}

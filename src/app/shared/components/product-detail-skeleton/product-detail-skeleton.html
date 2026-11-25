@@ -1,0 +1,115 @@
+
+<!-- SEVENS Aquatics - Product Details Skeleton -->
+
+<div class="product-detail-skeleton" aria-hidden="true">
+
+  <!-- Main Product Layout -->
+  <div class="skeleton-detail-grid">
+
+    <!-- Product Gallery -->
+    <div class="skeleton-gallery">
+
+      <!-- Main Image -->
+      <div class="skeleton-main-image">
+        <app-skeleton-loader
+          width="100%"
+          height="100%"
+          borderRadius="16px"
+        />
+      </div>
+
+      <!-- Gallery Thumbnails -->
+      <div class="skeleton-thumbnails">
+        @for (item of [1, 2, 3, 4]; track item) {
+          <div class="skeleton-thumbnail">
+            <app-skeleton-loader
+              width="100%"
+              height="100%"
+            />
+          </div>
+        }
+      </div>
+
+    </div>
+
+    <!-- Product Information -->
+    <div class="skeleton-information">
+
+      <!-- Category -->
+      <app-skeleton-loader
+        width="35%"
+        height="14px"
+      />
+
+      <!-- Product Name -->
+      <app-skeleton-loader
+        width="85%"
+        height="40px"
+      />
+
+      <!-- Price -->
+      <app-skeleton-loader
+        width="30%"
+        height="32px"
+      />
+
+      <!-- Stock Status -->
+      <app-skeleton-loader
+        width="35%"
+        height="24px"
+      />
+
+      <!-- Description -->
+      <div class="skeleton-description">
+        @for (item of [1, 2, 3]; track item) {
+          <app-skeleton-loader
+            width="100%"
+            height="14px"
+          />
+        }
+
+        <app-skeleton-loader
+          width="65%"
+          height="14px"
+        />
+      </div>
+
+      <!-- Quantity Selector -->
+      <app-skeleton-loader
+        width="140px"
+        height="42px"
+      />
+
+      <!-- Add to Cart -->
+      <app-skeleton-loader
+        width="100%"
+        height="48px"
+      />
+
+    </div>
+
+  </div>
+
+  <!-- Product Care Information -->
+  <div class="skeleton-care">
+
+    <app-skeleton-loader
+      width="45%"
+      height="26px"
+    />
+
+    @for (item of [1, 2, 3]; track item) {
+      <app-skeleton-loader
+        width="100%"
+        height="14px"
+      />
+    }
+
+    <app-skeleton-loader
+      width="60%"
+      height="14px"
+    />
+
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+
+<!-- SEVENS Aquatics - Reusable Skeleton Loader -->
+
+<div
+  class="skeleton"
+  [class.skeleton-text]="shape() === 'text'"
+  [class.skeleton-rectangle]="shape() === 'rectangle'"
+  [class.skeleton-circle]="shape() === 'circle'"
+  [class.shimmer]="animated()"
+  [style.width]="width()"
+  [style.height]="height()"
+  [style.border-radius]="shape() === 'circle' ? '50%' : borderRadius()"
+  aria-hidden="true">
+</div>

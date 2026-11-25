@@ -1,0 +1,112 @@
+
+/* SEVENS Aquatics - Product Details Skeleton */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Main Layout */
+.skeleton-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+}
+
+/* Product Gallery */
+.skeleton-gallery {
+  min-width: 0;
+}
+
+.skeleton-main-image {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 16px;
+
+  app-skeleton-loader {
+    height: 100%;
+  }
+}
+
+/* Gallery Thumbnails */
+.skeleton-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.skeleton-thumbnail {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+
+  app-skeleton-loader {
+    height: 100%;
+  }
+}
+
+/* Product Information */
+.skeleton-information {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* Product Description */
+.skeleton-description {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+/* Product Care Section */
+.skeleton-care {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 48px;
+  padding: 28px;
+  background: #172720;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .skeleton-detail-grid {
+    gap: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .skeleton-detail-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .skeleton-information {
+    gap: 16px;
+  }
+
+  .skeleton-thumbnails {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .skeleton-care {
+    margin-top: 32px;
+    padding: 20px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 390px) {
+  .skeleton-care {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,76 @@
+<!-- SEVENS Aquatics - Product Catalogue -->
+
+<section class="product-catalogue">
+  <div class="container">
+
+    <!-- Breadcrumb Navigation -->
+    @if (breadcrumbs$ | async; as breadcrumbs) {
+    <app-breadcrumb [items]="breadcrumbs" />
+    }
+
+    <!-- Category Heading -->
+    @if (category$ | async; as category) {
+    <h1>{{ category | titlecase }}</h1>
+    }
+
+    <!-- Subcategory Heading -->
+    @if (subcategory$ | async; as subcategory) {
+    <h2>
+      {{ subcategory.replaceAll('-', ' ') | titlecase }}
+    </h2>
+    }
+
+    <!-- Product Catalogue State -->
+    @if (productState$ | async; as state) {
+
+    <div class="product-grid" [attr.aria-busy]="state.status === 'loading'">
+
+      @switch (state.status) {
+
+      <!-- Loading State -->
+      @case ('loading') {
+      @for (item of [1, 2, 3, 4, 5, 6, 7, 8]; track item) {
+      <app-product-card-skeleton />
+      }
+      }
+
+      <!-- Success State -->
+      @case ('success') {
+      @for (product of state.data; track product.id) {
+      <app-product-card [product]="product" />
+      }
+      }
+
+      <!-- Empty State -->
+      @case ('empty') {
+      <div class="catalogue-empty">
+        <p>Our collection is coming soon.</p>
+        <p>Check back for new aquarium products!</p>
+      </div>
+      }
+
+      <!-- Error State -->
+
+      <!-- Error State -->
+      @case ('error') {
+      <div class="catalogue-error">
+
+        <h3>Unable to load products</h3>
+
+        <p role="alert">{{ state.message }}</p>
+
+        <button type="button" class="retry-button" (click)="retryProducts()">
+          Try Again
+        </button>
+
+      </div>
+      }
+
+      }
+
+    </div>
+
+    }
+
+  </div>
+</section>

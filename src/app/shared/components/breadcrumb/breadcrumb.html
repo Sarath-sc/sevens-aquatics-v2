@@ -1,0 +1,33 @@
+
+<!-- Breadcrumb Navigation -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+
+    @for (item of items(); track $index; let last = $last) {
+      <li class="breadcrumb-item">
+
+        <!-- Clickable Parent Page -->
+        @if (!last && item.url) {
+          <a [routerLink]="item.url">
+            {{ item.label }}
+          </a>
+        } @else {
+
+          <!-- Current Page -->
+          <span [attr.aria-current]="last ? 'page' : null">
+            {{ item.label }}
+          </span>
+        }
+
+        <!-- Separator -->
+        @if (!last) {
+          <span class="breadcrumb-separator" aria-hidden="true">
+            ›
+          </span>
+        }
+
+      </li>
+    }
+
+  </ol>
+</nav>

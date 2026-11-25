@@ -1,0 +1,75 @@
+
+<!-- SEVENS Aquatics - Product Card -->
+<article class="product-card">
+
+  <!-- Product Image -->
+  <a
+    class="product-image"
+    [routerLink]="productUrl()"
+    [attr.aria-label]="'View ' + product().name">
+
+    @if (product().imageUrl) {
+      <img
+        [src]="product().imageUrl"
+        [alt]="product().name"
+        loading="lazy"
+        decoding="async"
+      />
+    } @else {
+      <!-- Placeholder When No Image Is Available -->
+      <div class="image-placeholder">
+        <span aria-hidden="true">🐠</span>
+        <span>Image coming soon</span>
+      </div>
+    }
+
+  </a>
+
+  <!-- Product Information -->
+  <div class="product-info">
+
+    <!-- Product Category -->
+    <p class="product-category">
+      {{ product().category }}
+      @if (product().subcategory) {
+        <span> / {{ product().subcategory }}</span>
+      }
+    </p>
+
+    <!-- Product Name -->
+    <h3 class="product-name">
+      <a [routerLink]="productUrl()">
+        {{ product().name }}
+      </a>
+    </h3>
+
+    <!-- Price and Stock -->
+    <div class="product-meta">
+      <span class="product-price">
+        {{ product().price.toLocaleString('en-IN', {
+          style: 'currency',
+          currency: 'INR',
+          maximumFractionDigits: 0
+        }) }}
+      </span>
+
+      @if (isInStock()) {
+        <span class="stock-status in-stock">
+          In stock
+        </span>
+      } @else {
+        <span class="stock-status out-of-stock">
+          Out of stock
+        </span>
+      }
+    </div>
+
+    <!-- View Product Details -->
+    <a
+      class="view-details"
+      [routerLink]="productUrl()">
+      View Details
+    </a>
+
+  </div>
+</article>

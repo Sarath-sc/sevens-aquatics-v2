@@ -1,0 +1,77 @@
+<!-- SEVENS Aquatics - Product Details -->
+
+<section class="product-detail">
+  <div class="container" [attr.aria-busy]="isLoading()">
+
+    @if (isLoading()) {
+    <app-product-detail-skeleton />
+    } @else {
+
+    @if (productSlug$ | async; as slug) {
+
+    <!-- Breadcrumb -->
+    <nav class="product-breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Product Details</span>
+    </nav>
+
+    <div class="product-detail-grid">
+
+      <!-- Product Gallery -->
+      <div class="product-gallery">
+        <div class="main-image">
+          <div class="image-placeholder">
+            <span aria-hidden="true">🐠</span>
+            <p>Product image coming soon</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Information -->
+      <div class="product-information">
+
+        <p class="product-category">SEVENS Aquatics & Pets</p>
+
+        <h1>Product Details</h1>
+
+        <p class="product-reference">
+          Product reference: {{ slug }}
+        </p>
+
+        <p class="product-description">
+          Product information, pricing, and availability
+          will be displayed here once the product catalogue
+          is connected.
+        </p>
+
+        <div class="product-availability">
+          Availability: To be confirmed
+        </div>
+
+        <div class="product-actions">
+          <p>Purchasing options coming soon.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Product Care Information -->
+    <section class="product-care">
+      <h2>Product Information & Care</h2>
+
+      <p>
+        Detailed care instructions and product specifications
+        will be available here.
+      </p>
+    </section>
+
+    } @else {
+    <h1>Product not found</h1>
+    }
+
+
+    }
+
+  </div>
+</section>

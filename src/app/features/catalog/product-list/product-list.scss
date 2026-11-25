@@ -1,0 +1,189 @@
+/* SEVENS Aquatics - Product Catalogue */
+
+:host {
+    display: block;
+    min-height: 60vh;
+    background: #101b18;
+    color: #e5ebe7;
+}
+
+.product-catalogue {
+    padding: 12px 0 64px;
+
+    h1 {
+        margin: 16px 0 8px;
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 700;
+        line-height: 1.2;
+        color: #ffffff;
+    }
+
+    h2 {
+        margin: 8px 0 20px;
+        font-size: clamp(20px, 2vw, 26px);
+        font-weight: 500;
+        color: #50b58a;
+    }
+}
+
+.catalogue-message {
+    margin: 20px 0;
+    color: #a7b9b1;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .product-catalogue {
+        padding: 8px 0 40px;
+
+        h1 {
+            margin-top: 12px;
+        }
+    }
+}
+
+/* Small phones */
+@media (max-width: 390px) {
+    .product-catalogue h1 {
+        font-size: 26px;
+    }
+
+    .catalogue-message {
+        font-size: 14px;
+    }
+
+
+
+}
+
+
+
+/* SEVENS Aquatics - Responsive Product Grid */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+}
+
+/* Empty Catalogue Message */
+.catalogue-empty {
+    grid-column: 1 / -1;
+    padding: 60px 20px;
+    text-align: center;
+    background: #172720;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+
+    p {
+        margin: 0 0 8px;
+        color: #a7b9b1;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    p:first-child {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+/* Small Tablet */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .catalogue-empty {
+        padding: 40px 16px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 390px) {
+    .product-grid {
+        gap: 10px;
+    }
+
+    .catalogue-empty p:first-child {
+        font-size: 18px;
+    }
+}
+
+
+
+
+/* Catalogue Error State */
+.catalogue-error {
+  grid-column: 1 / -1;
+  padding: 48px 24px;
+  text-align: center;
+  background: #172720;
+  border: 1px solid rgba(255, 155, 145, 0.2);
+  border-radius: 12px;
+
+  h3 {
+    margin: 0 0 12px;
+    color: #ff9b91;
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0 0 24px;
+    color: #a7b9b1;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+/* Retry Button */
+.retry-button {
+  min-height: 44px;
+  padding: 12px 28px;
+  background: #50b58a;
+  border: none;
+  border-radius: 8px;
+  color: #101b18;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #6bc99e;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #a4e8c8;
+    outline-offset: 3px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .catalogue-error {
+    padding: 32px 16px;
+
+    h3 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+}
